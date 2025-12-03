@@ -288,6 +288,7 @@ class IMXUSBLoader(USBResource):
                          ("1fc9", "012b"), ("1fc9", "0134"),
                          ("1fc9", "013e"), ("1fc9", "0146"),
                          ("1fc9", "014e"), ("1fc9", "0129"),
+                         ("1fc9", "0159"), ("1fc9", "015d"),
                          ("1b67", "4fff"), ("0525", "b4a4"), # SPL
                          ("3016", "1001"),
                          ]:
@@ -770,6 +771,8 @@ class USBDebugger(USBResource):
                          ("0483", "374b"),  # STLINK-V3
                          ("0483", "374e"),  # STLINK-V3
                          ("0483", "374f"),  # STLINK-V3
+                         ("0483", "3754"),  # STLINK-V3
+                         ("04b4", "f155"),  # KitProg3 CMSIS-DAP
                          ("15ba", "0003"),  # Olimex ARM-USB-OCD
                          ("15ba", "002b"),  # Olimex ARM-USB-OCD-H
                          ("15ba", "0004"),  # Olimex ARM-USB-TINY
@@ -777,6 +780,7 @@ class USBDebugger(USBResource):
                          ("1366", "0101"),  # SEGGER J-Link PLUS
                          ("1366", "0105"),  # SEGGER J-Link
                          ("1366", "1015"),  # SEGGER J-Link
+                         ("1366", "1024"),  # SEGGER J-Link
                          ("1366", "1051"),  # SEGGER J-Link
                          ("1366", "1061"),  # SEGGER J-Link
                          ]:
