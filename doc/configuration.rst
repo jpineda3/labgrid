@@ -637,9 +637,9 @@ USB based gpiochips.
        '@ID_SERIAL_SHORT': 'D38EJ8LF'
      pin: 0
 
-The example would search for a USB gpiochip with the key `ID_SERIAL_SHORT`
-and the value `D38EJ8LF` and use the pin 0 of this device.
-The `ID_SERIAL_SHORT` property is set by the usb_id builtin helper program.
+The example would search for a USB gpiochip with the key ``ID_SERIAL_SHORT``
+and the value ``D38EJ8LF`` and use the pin 0 of this device.
+The ``ID_SERIAL_SHORT`` property is set by the usb_id builtin helper program.
 
 Arguments:
   - match (dict): key and value pairs for a udev match, see `udev Matching`_
@@ -695,7 +695,7 @@ Writing images to disk requires installation of ``dd`` or optionally
 
 For mounting the file system and writing into it,
 `PyGObject <https://pygobject.readthedocs.io/>`_ must be installed.
-For Debian, the necessary packages are `python3-gi` and `gir1.2-udisks-2.0`.
+For Debian, the necessary packages are ``python3-gi`` and ``gir1.2-udisks-2.0``.
 This is not required for writing images to disks.
 
 Arguments:
@@ -937,6 +937,24 @@ NetworkAlteraUSBBlaster
 A :any:`NetworkAlteraUSBBlaster` describes an `AlteraUSBBlaster`_ resource
 available on a remote computer.
 
+ADIIceDebugger
+~~~~~~~~~~~~~~~~
+An :any:`ADIIceDebugger` resource describes an Altera USB blaster.
+
+.. code-block:: yaml
+
+   ADIIceDebugger:
+     match:
+       ID_PATH: 'pci-0000:06:00.0-usb-0:1.3.2:1.0'
+
+Arguments:
+  - match (dict): key and value pairs for a udev match, see `udev Matching`_
+
+NetworkADIIceDebugger
+~~~~~~~~~~~~~~~~~~~~~~~
+A :any:`NetworkADIIceDebugger` describes an `ADIIceDebugger`_ resource
+available on a remote computer.
+
 USBDebugger
 ~~~~~~~~~~~
 A :any:`USBDebugger` resource describes a JTAG USB adapter (for example an
@@ -953,6 +971,8 @@ Arguments:
 
 Used by:
   - `OpenOCDDriver`_
+
+
 
 NetworkUSBDebugger
 ~~~~~~~~~~~~~~~~~~
@@ -1550,15 +1570,15 @@ This manager is automatically created when a resource derived from
 :any:`USBResource` (such as :any:`USBSerialPort`, :any:`IMXUSBLoader` or
 :any:`AndroidUSBFastboot`) is instantiated.
 
-To identify the kernel device which corresponds to a configured `USBResource`,
+To identify the kernel device which corresponds to a configured :any:`USBResource`,
 each existing (and subsequently added) kernel device is matched against the
 configured resources.
-This is based on a list of `match entries` which must all be tested
+This is based on a list of *match entries* which must all be tested
 successfully against the potential kernel device.
 Match entries starting with an ``@`` are checked against the device's parents
 instead of itself; here one matching parent causes the check to be successful.
 
-A given `USBResource` class has builtin match entries that are checked first,
+A given :any:`USBResource` class has builtin match entries that are checked first,
 for example that the ``SUBSYSTEM`` is ``tty`` as in the case of the
 :any:`USBSerialPort`.
 Only if these succeed, match entries provided by the user for the resource
@@ -2977,7 +2997,7 @@ tool.
 Binds to:
   mux:
     - `LXAUSBMux`_
-    - `NetworkLXAUSBMux`
+    - `NetworkLXAUSBMux`_
 
 Implements:
   - None yet
@@ -2998,7 +3018,7 @@ tool.
 Binds to:
   mux:
     - `USBSDWireDevice`_
-    - `NetworkUSBSDWireDevice`
+    - `NetworkUSBSDWireDevice`_
 
 Implements:
   - None yet
@@ -3030,7 +3050,7 @@ Arguments:
 Although the driver can be used from Python code by calling the ``stream()``
 method, it is currently mainly useful for the ``video`` subcommand of
 ``labgrid-client``.
-It supports the `Logitech HD Pro Webcam C920` with the USB ID 046d:082d and a
+It supports the *Logitech HD Pro Webcam C920* with the USB ID ``046d:082d`` and a
 few others.
 More cameras can be added to ``get_qualities()`` and ``get_pipeline()`` in
 ``labgrid/driver/usbvideodriver.py``.
@@ -3078,7 +3098,7 @@ Arguments:
 Currently, it can be used by the ``labgrid-client`` ``tmc`` subcommands to show
 (and save) a screenshot, to show per channel measurements and to execute raw
 TMC commands.
-It only supports the `Keysight DSO-X 2000` series (with the USB ID 0957:1798),
+It only supports the *Keysight DSO-X 2000* series (with the USB ID ``0957:1798``),
 but more devices can be added by extending ``on_activate()`` in
 ``labgrid/driver/usbtmcdriver.py`` and writing a corresponding backend in
 ``labgrid/driver/usbtmc/``.
@@ -3225,14 +3245,14 @@ flashed.
 XenaDriver
 ~~~~~~~~~~
 The :any:`XenaDriver` allows to use Xena networking test equipment.
-Using the `xenavalkyrie` library a full API to control the tester is available.
+Using the ``xenavalkyrie`` library a full API to control the tester is available.
 
 Binds to:
   xena_manager:
     - `XenaManager`_
 
 The driver is supposed to work with all Xena products from the "Valkyrie Layer 2-3 Test platform"
-Currently tested on a `XenaCompact` chassis equipped with a `1 GE test module`.
+Currently tested on a *XenaCompact* chassis equipped with a *1 GE test module*.
 
 DockerDriver
 ~~~~~~~~~~~~
@@ -3269,7 +3289,7 @@ Arguments:
         containers storage. Throw an error if no image is found and the pull
         fails.
       - never: Never pull the image but use the one from the local containers
-        storage. Throw a `docker.errors.ImageNotFound` if no image is found.
+        storage. Throw a ``docker.errors.ImageNotFound`` if no image is found.
 
   - command (str): optional, command to run in the container (depends on image)
   - volumes (list): optional, list to configure volumes mounted inside the container
@@ -3421,6 +3441,8 @@ Strategies
 ----------
 Strategies are used to ensure that the device is in a certain state during a test.
 Such a state could be the bootloader or a booted Linux kernel with shell.
+
+.. _conf-bareboxstrategy:
 
 BareboxStrategy
 ~~~~~~~~~~~~~~~
@@ -3622,7 +3644,7 @@ StepReporter
 .. warning::
     The StepReporter is deprecated, use the `StepLogger`_ instead.
 
-The :any:`StepReporter` outputs individual labgrid steps to `STDOUT`.
+The :any:`StepReporter` outputs individual labgrid steps to ``STDOUT``.
 
 .. doctest::
 
@@ -3750,6 +3772,51 @@ All the resources and drivers in this chapter have a YAML example snippet which
 can simply be added (at the correct indentation level, one level deeper) to the
 environment configuration.
 
+See the :ref:`labgrid-device-config` man page for documentation on the
+top-level ``options``, ``images``, ``tools``, and ``imports`` keys in the
+environment configuration.
+
+.. _environment-configuration-feature-flags:
+
+Feature Flags
+~~~~~~~~~~~~~
+Similar targets or multi target environments may differ from each other in
+certain small aspects, e.g. one device has a camera or screen connected, but
+another one has not.
+In labgrid's environment configs, such variations are described as feature flags.
+
+Here's an example environment configuration for a target-scoped feature
+``camera``:
+
+.. code-block:: yaml
+  :name: feature-flag-env.yaml
+
+  targets:
+    main:
+      features:
+        - camera
+      resources: {}
+      drivers: {}
+
+Features can not only be set per target, but also globally:
+
+.. code-block:: yaml
+  :name: feature-flag-global-env.yaml
+
+  features:
+    - camera
+  targets:
+    main:
+      features:
+        - console
+      resources: {}
+      drivers: {}
+
+See :ref:`usage_pytestplugin_mark_lg_feature` for how to make use of feature
+flags in tests.
+
+Multiple Drivers of the Same Type
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 If you want to use multiple drivers of the same type, the resources and drivers
 need to be lists, e.g:
 
@@ -3802,6 +3869,8 @@ To bind the correct driver to the correct resource, explicit ``name`` and
 The property name for the binding (e.g. ``port`` in the example above) is
 documented for each individual driver in this chapter.
 
+Templating the Environment Configuration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 The YAML configuration file also supports templating for some substitutions,
 these are:
 
@@ -3825,10 +3894,6 @@ would resolve the ``qemu_bin`` path relative to the ``BASE`` dir of the YAML
 file and try to use the `RemotePlace`_ with the name set in the ``LG_PLACE``
 environment variable.
 
-See the :ref:`labgrid-device-config` man page for documentation on the
-top-level ``options``, ``images``, ``tools``, and ``examples`` keys in the
-environment configuration.
-
 .. _exporter-configuration:
 
 Exporter Configuration
@@ -3836,8 +3901,8 @@ Exporter Configuration
 The exporter is configured by using a YAML file (with a syntax similar to the
 environment configs used for pytest) or by instantiating the :any:`Environment`
 object.
-To configure the exporter, you need to define one or more `resource groups`,
-each containing one or more `resources`.
+To configure the exporter, you need to define one or more *resource groups*,
+each containing one or more *resources*.
 The syntax for exported resource names is ``<exporter>/<group>/<class>/<name>``,
 which allows the exporter to group resources for various usage scenarios, e.g.
 all resources of a specific place or for a specific test setup.
@@ -3861,7 +3926,7 @@ The basic structure of an exporter configuration file is:
        <params>
 
 By default, the class name is inferred from the resource name,
-and `<params>` will be passed to its constructor.
+and ``<params>`` will be passed to its constructor.
 For USB resources, you will most likely want to use :ref:`udev-matching` here.
 
 As a simple example, here is one group called ``usb-hub-in-rack12`` containing
@@ -3910,8 +3975,8 @@ to achieve the same effect:
        match:
          '@ID_PATH': 'pci-0000:05:00.0-usb-3-1.4'
 
-Templating
-~~~~~~~~~~
+Templating the Exporter Configuration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 To reduce the amount of repeated declarations when many similar resources
 need to be exported, the `Jinja2 template engine <http://jinja.pocoo.org/>`_
 is used as a preprocessor for the configuration file:

@@ -546,6 +546,24 @@ class USBGenericRemoteExport(USBGenericExport):
         self.data["cls"] = f"Remote{self.cls}".replace("Network", "")
 
 
+@attr.s(eq=False)
+class USBADIIceDebuggerExport(USBGenericExport):
+    """ResourceExport for ADI Ice 1x00 debuggers"""
+
+    def __attrs_post_init__(self):
+        super().__attrs_post_init__()
+
+    def _get_params(self):
+        """Helper function to return parameters"""
+        return {
+            "host": self.host,
+            "busnum": self.local.busnum,
+            "devnum": self.local.devnum,
+            "path": self.local.path,
+            "vendor_id": self.local.vendor_id,
+            "gdb_port": self.local.gdb_port,
+        }
+
 exports["AndroidFastboot"] = USBGenericExport
 exports["AndroidUSBFastboot"] = USBGenericRemoteExport
 exports["DFUDevice"] = USBGenericExport
@@ -553,6 +571,7 @@ exports["IMXUSBLoader"] = USBGenericExport
 exports["MXSUSBLoader"] = USBGenericExport
 exports["RKUSBLoader"] = USBGenericExport
 exports["AlteraUSBBlaster"] = USBGenericExport
+exports["ADIIceDebugger"] = USBADIIceDebuggerExport
 exports["SigrokUSBDevice"] = USBSigrokExport
 exports["SigrokUSBSerialDevice"] = USBSigrokExport
 exports["USBSDMuxDevice"] = USBSDMuxExport
@@ -759,7 +778,6 @@ class AndroidNetFastbootExport(ResourceExport):
 
 
 exports["AndroidNetFastboot"] = AndroidNetFastbootExport
-
 
 @attr.s(eq=False)
 class YKUSHPowerPortExport(ResourceExport):
