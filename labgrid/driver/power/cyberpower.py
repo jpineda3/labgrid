@@ -7,6 +7,7 @@ from pysnmp.hlapi import (
     ContextData, ObjectType, ObjectIdentity,
     getCmd, setCmd
 )
+from pysnmp.proto.rfc1902 import Integer  # <-- add this import
 
 # Labgrid will inspect PORT for proxymanager logic; SNMP uses UDP/161
 PORT = 161
@@ -45,10 +46,13 @@ def _set_v1(host: str, oid: str, value: int):
     trans  = UdpTransportTarget((host, PORT), timeout=2, retries=3)
     ctx    = ContextData()
     errorIndication, errorStatus, errorIndex, varBinds = next(setCmd(
-        engine, comm, trans, ctx, ObjectType(ObjectIdentity(oid), value)
+        engine, comm, trans, ctx,
+        # IMPORTANT: wrap raw int in ASN.1 Integer()
+        ObjectType(ObjectIdentity(oid), Integer(value))
     ))
     if errorIndication or errorStatus:
         raise RuntimeError(f"SNMPv1 set failed: {errorIndication or errorStatus.prettyPrint()}")
+
 
 def power_set(host, port, index, value: bool):
     """
