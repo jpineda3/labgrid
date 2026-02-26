@@ -583,6 +583,8 @@ class USBADIIceDebuggerExport(USBGenericExport):
             "vendor_id": self.local.vendor_id,
             "model_id": self.local.model_id,
             "gdb_port": self.local.gdb_port,
+            "tcl_port": self.local.tcl_port,
+            "telnet_port": self.local.telnet_port,
         }
 
 exports["AndroidFastboot"] = USBGenericExport
