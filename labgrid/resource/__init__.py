@@ -9,7 +9,7 @@ from .power import NetworkPowerPort, PDUDaemonPort
 from .remote import RemotePlace
 from .udev import (
     AlteraUSBBlaster,
-    ADIICEDebugger,
+    ADIIceDebugger,
     AndroidUSBFastboot,
     DFUDevice,
     DeditecRelais8,

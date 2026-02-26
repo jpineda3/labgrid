@@ -403,7 +403,7 @@ class AlteraUSBBlaster(USBResource):
 
 @target_factory.reg_resource
 @attr.s(eq=False)
-class ADIICEDebugger(USBResource):
+class ADIIceDebugger(USBResource):
     gdb_port = attr.ib(type=str, default=None)
     tcl_port = attr.ib(type=str, default=None)
     telnet_port = attr.ib(type=str, default=None)

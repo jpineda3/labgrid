@@ -937,20 +937,20 @@ NetworkAlteraUSBBlaster
 A :any:`NetworkAlteraUSBBlaster` describes an `AlteraUSBBlaster`_ resource
 available on a remote computer.
 
-ADIICEDebugger
+ADIIceDebugger
 ~~~~~~~~~~~~~~~~
-An :any:`ADIICEDebugger` resource describes an ADI ADZS-ICE-1x00 Emulator.
+An :any:`ADIIceDebugger` resource describes an ADI ADZS-ICE-1x00 Emulator.
 
 .. code-block:: yaml
-   ADIICEDebugger:
+   ADIIceDebugger:
      match:
        ID_PATH: 'pci-0000:06:00.0-usb-0:1.3.2:1.0'
 Arguments:
   - match (dict): key and value pairs for a udev match, see `udev Matching`_
 
-NetworkADIICEDebugger
+NetworkADIIceDebugger
 ~~~~~~~~~~~~~~~~~~~~~~~
-A :any:`NetworkADIICEDebugger` describes an `ADIICEDebugger`_ resource
+A :any:`NetworkADIIceDebugger` describes an `ADIIceDebugger`_ resource
 available on a remote computer.
 
 USBDebugger

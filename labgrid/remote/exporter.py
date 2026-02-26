@@ -567,7 +567,7 @@ class USBGenericRemoteExport(USBGenericExport):
         self.data["cls"] = f"Remote{self.cls}".replace("Network", "")
 
 @attr.s(eq=False)
-class USBADIICEDebuggerExport(USBGenericExport):
+class USBADIIceDebuggerExport(USBGenericExport):
     """ResourceExport for ADI Ice 1x00 debuggers"""
 
     def __attrs_post_init__(self):
@@ -592,7 +592,7 @@ exports["IMXUSBLoader"] = USBGenericExport
 exports["MXSUSBLoader"] = USBGenericExport
 exports["RKUSBLoader"] = USBGenericExport
 exports["AlteraUSBBlaster"] = USBGenericExport
-exports["ADIICEDebugger"] = USBADIICEDebuggerExport
+exports["ADIIceDebugger"] = USBADIIceDebuggerExport
 exports["SigrokUSBDevice"] = USBSigrokExport
 exports["SigrokUSBSerialDevice"] = USBSigrokExport
 exports["USBSDMuxDevice"] = USBSDMuxExport

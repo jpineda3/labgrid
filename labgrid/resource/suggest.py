@@ -16,7 +16,7 @@ from .udev import (
     USBSDWireDevice,
     USBSDWire3Device,
     AlteraUSBBlaster,
-    ADIICEDebugger,
+    ADIIceDebugger,
     RKUSBLoader,
     USBNetworkInterface,
     SiSPMPowerPort,
@@ -52,7 +52,7 @@ class Suggester:
         self.resources.append(USBSDWireDevice(**args))
         self.resources.append(USBSDWire3Device(**args))
         self.resources.append(AlteraUSBBlaster(**args))
-        self.resources.append(ADIICEDebugger(**args))
+        self.resources.append(ADIIceDebugger(**args))
         self.resources.append(RKUSBLoader(**args))
         self.resources.append(USBNetworkInterface(**args))
         self.resources.append(SiSPMPowerPort(**args))
