@@ -405,6 +405,8 @@ class AlteraUSBBlaster(USBResource):
 @attr.s(eq=False)
 class ADIICEDebugger(USBResource):
     gdb_port = attr.ib(type=str, default=None)
+    tcl_port = attr.ib(type=str, default=None)
+    telnet_port = attr.ib(type=str, default=None)
 
     def filter_match(self, device):
         if device.properties.get('ID_VENDOR_ID') != "064b":
